@@ -29,6 +29,15 @@ jobs:
                   workflow: GnuTests.yml
                   name: gnu-full-result.json
                   repo: uutils/coreutils
+            - name: Download the full logs
+              uses: dawidd6/action-download-artifact@v6
+              with:
+                  workflow: GnuTests.yml
+                  name: test-logs
+                  repo: uutils/coreutils
+                  path: test-logs.zip
+            - name: unzip logs
+              run: unzip test-logs.zip
             - name: run
               run: |
                   python builder.py

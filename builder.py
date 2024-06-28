@@ -36,10 +36,30 @@ def generate_html(data):
         .skip {
             background-color: #fff3cd;
         }
+        #all:checked ~ table tr {
+            display: table-row;
+        }
+        #pass:checked ~ table tr.fail, #pass:checked ~ table tr.skip {
+            display: none;
+        }
+        #fail:checked ~ table tr.pass, #fail:checked ~ table tr.skip {
+            display: none;
+        }
+        #skip:checked ~ table tr.pass, #skip:checked ~ table tr.fail {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <h1>Test Results</h1>
+    <input type="radio" id="all" name="show" checked/>
+    <label for="all">All</label>
+    <input type="radio" id="pass" name="show" />
+    <label for="pass">Pass</label>
+    <input type="radio" id="fail" name="show" />
+    <label for="fail">Fail</label>
+    <input type="radio" id="skip" name="show" />
+    <label for="skip">Skip</label>
     <table>
         <thead>
             <tr>
