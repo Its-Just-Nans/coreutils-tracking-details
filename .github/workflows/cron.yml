@@ -21,11 +21,14 @@ jobs:
                   name: gnu-full-result.json
                   repo: uutils/coreutils
             - name: run
-              run: python builder.py
+              run: |
+                  python builder.py
+                  mkdir dist
+                  mv index.html dist/index.html
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: "index.html"
+                  path: "dist"
             - name: Deploy to GitHub Pages
               id: deployment
               uses: actions/deploy-pages@v4
