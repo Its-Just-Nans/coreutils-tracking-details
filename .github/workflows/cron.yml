@@ -35,9 +35,10 @@ jobs:
                   workflow: GnuTests.yml
                   name: test-logs
                   repo: uutils/coreutils
-                  path: test-logs.zip
             - name: unzip logs
-              run: unzip test-logs.zip
+              run: |
+                  ls
+                  unzip test-logs.zip
             - name: run
               run: |
                   python builder.py
