@@ -35,14 +35,13 @@ jobs:
                   workflow: GnuTests.yml
                   name: test-logs
                   repo: uutils/coreutils
-            - name: unzip logs
-              run: |
-                  ls
-                  unzip test-logs.zip
             - name: run
               run: |
                   python builder.py
+            - name: Build
+              run: |
                   mkdir dist
+                  mv test-suite-* dist/
                   mv index.html dist/index.html
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
