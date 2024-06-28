@@ -27,9 +27,6 @@ def generate_html(data):
         th {
             background-color: #f4f4f4;
         }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
         .pass {
             background-color: #d4edda;
         }
