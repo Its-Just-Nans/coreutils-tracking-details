@@ -68,11 +68,11 @@ def generate_html(data):
     html_content = f"""
     {START_INDEX}
     <h1>Test Results</h1>
-    <input type="radio" id="all" name="show" checked/>
+    <input type="radio" id="all" name="show" />
     <label for="all">All</label>
     <input type="radio" id="pass" name="show" />
     <label for="pass">Pass</label>
-    <input type="radio" id="fail" name="show" />
+    <input type="radio" id="fail" name="show" checked/>
     <label for="fail">Fail</label>
     <input type="radio" id="skip" name="show" />
     <label for="skip">Skip</label>
