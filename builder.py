@@ -90,13 +90,12 @@ def generate_html(data):
     for category, logs in data.items():
         for log_file, status in logs.items():
             status_class = status.lower()  # use status as class for styling
+            name = f"<a href='{log_file}.html'>{log_file}</a>" if status != "PASS" else log_file
             html_content += f"""
             <tr class="{status_class}">
                 <td>{category}</td>
                 <td>
-                    <a href="{log_file}.html">
-                        {log_file}
-                    </a>
+                    {name}
                 </td>
                 <td>{status}</td>
             </tr>
