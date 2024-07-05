@@ -3,3 +3,5 @@ test-logs.zip
 test-suite-root.log
 test-suite.log
 index.html
+
+dist/
