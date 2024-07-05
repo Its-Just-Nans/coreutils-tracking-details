@@ -35,14 +35,9 @@ jobs:
                   workflow: GnuTests.yml
                   name: test-logs
                   repo: uutils/coreutils
-            - name: run
+            - name: Build website
               run: |
                   python builder.py
-            - name: Build
-              run: |
-                  mkdir dist
-                  mv test-suite-* dist/
-                  mv index.html dist/index.html
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
