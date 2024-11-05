@@ -143,7 +143,7 @@ def improve_text_out(text_out):
     rgx = re.compile(r"^(.*?\.\.\.)", re.MULTILINE)
     text_out = "\n".join(
         [
-            re.sub(rgx, "\n\n\g<1>\n\n\n", text_part_out)
+            re.sub(rgx, "\n\n\g<1>", text_part_out)
             for text_part_out in text_out.split("\n")
         ]
     )
