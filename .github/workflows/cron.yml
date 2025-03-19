@@ -27,7 +27,7 @@ jobs:
               uses: dawidd6/action-download-artifact@v6
               with:
                   workflow: GnuTests.yml
-                  name: gnu-full-result.json
+                  name: gnu-full-result
                   repo: uutils/coreutils
             - name: Download the full logs
               uses: dawidd6/action-download-artifact@v6
