@@ -66,20 +66,19 @@ END_INDEX = """
 """
 
 
-# Function to generate the HTML content
-def generate_html(data):
+def get_html_content(passed, failed, skipped):
     """Generate the HTML content for the test results"""
-    html_content = f"""
+    return f"""
     {START_INDEX}
     <h1>Test Results</h1>
     <input type="radio" id="all" name="show" />
     <label for="all">All</label>
     <input type="radio" id="pass" name="show" />
-    <label for="pass">Pass</label>
+    <label for="pass">Pass ({passed})</label>
     <input type="radio" id="fail" name="show" checked/>
-    <label for="fail">Fail</label>
+    <label for="fail">Fail ({failed})</label>
     <input type="radio" id="skip" name="show" />
-    <label for="skip">Skip</label>
+    <label for="skip">Skip ({skipped})</label>
     <table>
         <thead>
             <tr>
@@ -91,9 +90,21 @@ def generate_html(data):
         <tbody>
 """
 
+
+# Function to generate the HTML content
+def generate_html(data):
+    """Generate the HTML content for the test results"""
+    passed, failed, skipped = 0, 0, 0
+    html_content = ""
     for category, logs in data.items():
         for log_file, status in logs.items():
             status_class = status.lower()  # use status as class for styling
+            if status == "PASS":
+                passed += 1
+            elif status == "FAIL":
+                failed += 1
+            elif status == "SKIP":
+                skipped += 1
             name = (
                 f"<a href='{log_file}.html'>{log_file}</a>"
                 if status != "PASS"
@@ -113,6 +124,7 @@ def generate_html(data):
     </table>
 {END_INDEX}
 """
+    html_content = get_html_content(passed, failed, skipped) + html_content
     return html_content
 
 
