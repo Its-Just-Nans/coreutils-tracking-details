@@ -68,11 +68,12 @@ END_INDEX = """
 
 def get_html_content(passed, failed, skipped):
     """Generate the HTML content for the test results"""
+    total = passed + failed + skipped
     return f"""
     {START_INDEX}
     <h1>Test Results</h1>
     <input type="radio" id="all" name="show" />
-    <label for="all">All</label>
+    <label for="all">All ({total})</label>
     <input type="radio" id="pass" name="show" />
     <label for="pass">Pass ({passed})</label>
     <input type="radio" id="fail" name="show" checked/>
