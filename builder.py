@@ -1,5 +1,6 @@
 """builder https://github.com/Its-Just-Nans/coreutils-tracking-details"""
 
+from datetime import date
 import json
 from pathlib import Path
 import re
@@ -69,9 +70,10 @@ END_INDEX = """
 def get_html_content(passed, failed, skipped):
     """Generate the HTML content for the test results"""
     total = passed + failed + skipped
+    today = date.today()
     return f"""
     {START_INDEX}
-    <h1>Test Results</h1>
+    <h1>Test Results - last updated {today}</h1>
     <input type="radio" id="all" name="show" />
     <label for="all">All ({total})</label>
     <input type="radio" id="pass" name="show" />
@@ -165,11 +167,12 @@ def improve_text_out(text_out):
 
 def html_test_output(name, one_output):
     """Generate the HTML output for a test"""
+    today = date.today()
     text_out, test_file, res = one_output
     text_out_cleaned = improve_text_out(text_out)
-    res_print = res if res != 0 else ""
+    res_print = f"{res} " if res != 0 else ""
     txt = START_INDEX
-    txt += f"<h2>{name} ({res_print} failed)</h2>\n"
+    txt += f"<h2>{name} ({res_print}failed) - last updated {today}</h2>\n"
     link = f"https://github.com/coreutils/coreutils/blob/master/{test_file}"
     txt += f"<a href='{link}' target='_blank'>test link: {test_file}</a>"
     txt += f"<pre>{text_out_cleaned}</pre>"
